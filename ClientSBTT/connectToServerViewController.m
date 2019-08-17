@@ -47,9 +47,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.destinationViewController isKindOfClass:[loginViewController class]]){
+    /*if([segue.destinationViewController isKindOfClass:[loginViewController class]]){
         loginViewController *loginVC = (loginViewController *)segue.destinationViewController;
         loginVC.connMC=self.connMC;
+    }*/
+    if([segue.destinationViewController respondsToSelector:@selector(setConnMC:)]){
+        [segue.destinationViewController setConnMC: self.connMC];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"connectedToSBTTServer" object:nil];
 }

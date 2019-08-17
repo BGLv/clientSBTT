@@ -9,6 +9,8 @@
 #import "loginViewController.h"
 #import "connectionModelController.h"
 #import "GDataXMLNode.h"
+#import "createAccountViewController.h"
+#import "ViewController.h"
 
 @interface loginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -45,13 +47,22 @@
             return;
         }
     }
-    
+    //add Segue to viewController
+    //......
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
+    if([segue.destinationViewController respondsToSelector:@selector(setConnMC:)]){
+        [segue.destinationViewController setConnMC: self.connMC];
+    }
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"answerReceivedSBTT" object:nil];
 
+}
+
+- (IBAction)createAccountButtonPressed:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"createAccountSegue" sender:sender];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

@@ -94,7 +94,7 @@
                                 <rect key="frame" x="16" y="307" width="288" height="30"/>
                                 <state key="normal" title="Create account"/>
                                 <connections>
-                                    <segue destination="Gyo-E1-fOo" kind="show" id="4je-QR-MD7"/>
+                                    <action selector="createAccountButtonPressed:" destination="mbC-qV-YNl" eventType="touchUpInside" id="QOY-LR-YmS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -119,11 +119,12 @@
                         <outlet property="passwordTextField" destination="dB2-28-e09" id="9ey-r9-vKk"/>
                         <outlet property="usernameTextField" destination="N9B-FH-niE" id="RUn-dW-3bz"/>
                         <segue destination="BYZ-38-t0r" kind="show" id="0Ow-fv-1Hd"/>
+                        <segue destination="Gyo-E1-fOo" kind="show" identifier="createAccountSegue" id="GIE-Zb-ArY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEo-lt-xPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1680" y="-657.04225352112678"/>
+            <point key="canvasLocation" x="1596" y="-660"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="XGA-Tt-oPl">
@@ -172,10 +173,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmx-37-Eh5">
                                 <rect key="frame" x="16" y="383" width="288" height="30"/>
                                 <state key="normal" title="Create account"/>
+                                <connections>
+                                    <action selector="createAccountButtonPressed" destination="Gyo-E1-fOo" eventType="touchUpInside" id="zCP-7F-YSq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dk-ag-ymk">
                                 <rect key="frame" x="16" y="421" width="288" height="30"/>
                                 <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeButtonPressed" destination="Gyo-E1-fOo" eventType="touchUpInside" id="VLO-DM-ei6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,7 +214,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qd3-rk-Qgf"/>
                     </view>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="loginTextField" destination="A5j-XA-Jda" id="Mjy-Fh-VBE"/>
+                        <outlet property="nameTextField" destination="Er8-rc-ZRW" id="wEZ-qI-QrO"/>
+                        <outlet property="passwordTextField" destination="ORX-iK-1O5" id="X4I-Me-h2F"/>
+                        <outlet property="patronymicTextField" destination="1eA-yb-elq" id="Uzk-JX-b6Z"/>
+                        <outlet property="repeatPasswordTextField" destination="KVn-sF-g9y" id="ebl-EM-ob6"/>
+                        <outlet property="surnameTextField" destination="82z-VX-f71" id="rOA-xp-tXr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24Q-3v-85B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

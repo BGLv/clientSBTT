@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class connectionModelController;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface createAccountViewController : UIViewController
+
+@property (nonatomic) connectionModelController *connMC;
 
 @end
 
