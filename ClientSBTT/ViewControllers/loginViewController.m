@@ -48,7 +48,10 @@
         }
     }
     //add Segue to viewController
-    //......
+    //[self performSegueWithIdentifier:@"toMainTabBarControllerSegue" sender:nil];
+    
+    //Nottify for suceed login
+    [[NSNotificationCenter defaultCenter]  postNotificationName:@"clientLoginSucceed" object:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

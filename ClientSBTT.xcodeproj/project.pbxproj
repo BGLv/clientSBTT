@@ -12,9 +12,10 @@
 		8321A2882306F3EA006CA31A /* createAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8321A2872306F3EA006CA31A /* createAccountViewController.m */; };
 		8352CBCD230746A000210790 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352CBCC230746A000210790 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8352CBD02307479100210790 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8352CBCF2307479100210790 /* libxml2.tbd */; };
+		835DE5F523156716006DD07D /* afterLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835DE5F423156716006DD07D /* afterLogin.storyboard */; };
 		8385E4212306C9E1001CA774 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E4202306C9E1001CA774 /* AppDelegate.m */; };
 		8385E4242306C9E1001CA774 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E4232306C9E1001CA774 /* ViewController.m */; };
-		8385E4272306C9E1001CA774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8385E4252306C9E1001CA774 /* Main.storyboard */; };
+		8385E4272306C9E1001CA774 /* beforeLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8385E4252306C9E1001CA774 /* beforeLogin.storyboard */; };
 		8385E4292306C9E2001CA774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8385E4282306C9E2001CA774 /* Assets.xcassets */; };
 		8385E42C2306C9E2001CA774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8385E42A2306C9E2001CA774 /* LaunchScreen.storyboard */; };
 		8385E42F2306C9E2001CA774 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E42E2306C9E2001CA774 /* main.m */; };
@@ -31,12 +32,13 @@
 		8352CBCB230746A000210790 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		8352CBCC230746A000210790 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		8352CBCF2307479100210790 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		835DE5F423156716006DD07D /* afterLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = afterLogin.storyboard; sourceTree = "<group>"; };
 		8385E41C2306C9E1001CA774 /* ClientSBTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClientSBTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8385E41F2306C9E1001CA774 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8385E4202306C9E1001CA774 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8385E4222306C9E1001CA774 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8385E4232306C9E1001CA774 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8385E4262306C9E1001CA774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8385E4262306C9E1001CA774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/beforeLogin.storyboard; sourceTree = "<group>"; };
 		8385E4282306C9E2001CA774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8385E42B2306C9E2001CA774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8385E42D2306C9E2001CA774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +67,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		835DE5F1231562A8006DD07D /* GDataXML */ = {
+			isa = PBXGroup;
+			children = (
+				8352CBCB230746A000210790 /* GDataXMLNode.h */,
+				8352CBCC230746A000210790 /* GDataXMLNode.m */,
+			);
+			path = GDataXML;
+			sourceTree = "<group>";
+		};
+		835DE5F2231562F0006DD07D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8385E4222306C9E1001CA774 /* ViewController.h */,
+				8385E4232306C9E1001CA774 /* ViewController.m */,
+				8321A2862306F3EA006CA31A /* createAccountViewController.h */,
+				8321A2872306F3EA006CA31A /* createAccountViewController.m */,
+				8321A2832306EF37006CA31A /* loginViewController.h */,
+				8321A2842306EF37006CA31A /* loginViewController.m */,
+				8321A2802306ECF0006CA31A /* connectToServerViewController.h */,
+				8321A2812306ECF0006CA31A /* connectToServerViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		835DE5F323156314006DD07D /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				8385E4352306CA5D001CA774 /* connectionModelController.h */,
+				8385E4362306CA5D001CA774 /* connectionModelController.m */,
+			);
+			path = ModelController;
+			sourceTree = "<group>";
+		};
 		8385E4132306C9E1001CA774 = {
 			isa = PBXGroup;
 			children = (
@@ -85,21 +120,13 @@
 		8385E41E2306C9E1001CA774 /* ClientSBTT */ = {
 			isa = PBXGroup;
 			children = (
-				8352CBCB230746A000210790 /* GDataXMLNode.h */,
-				8352CBCC230746A000210790 /* GDataXMLNode.m */,
+				835DE5F1231562A8006DD07D /* GDataXML */,
 				8385E41F2306C9E1001CA774 /* AppDelegate.h */,
 				8385E4202306C9E1001CA774 /* AppDelegate.m */,
-				8385E4222306C9E1001CA774 /* ViewController.h */,
-				8385E4232306C9E1001CA774 /* ViewController.m */,
-				8385E4352306CA5D001CA774 /* connectionModelController.h */,
-				8385E4362306CA5D001CA774 /* connectionModelController.m */,
-				8385E4252306C9E1001CA774 /* Main.storyboard */,
-				8321A2862306F3EA006CA31A /* createAccountViewController.h */,
-				8321A2872306F3EA006CA31A /* createAccountViewController.m */,
-				8321A2832306EF37006CA31A /* loginViewController.h */,
-				8321A2842306EF37006CA31A /* loginViewController.m */,
-				8321A2802306ECF0006CA31A /* connectToServerViewController.h */,
-				8321A2812306ECF0006CA31A /* connectToServerViewController.m */,
+				835DE5F2231562F0006DD07D /* ViewControllers */,
+				835DE5F323156314006DD07D /* ModelController */,
+				8385E4252306C9E1001CA774 /* beforeLogin.storyboard */,
+				835DE5F423156716006DD07D /* afterLogin.storyboard */,
 				8385E4282306C9E2001CA774 /* Assets.xcassets */,
 				8385E42A2306C9E2001CA774 /* LaunchScreen.storyboard */,
 				8385E42D2306C9E2001CA774 /* Info.plist */,
@@ -167,7 +194,8 @@
 			files = (
 				8385E42C2306C9E2001CA774 /* LaunchScreen.storyboard in Resources */,
 				8385E4292306C9E2001CA774 /* Assets.xcassets in Resources */,
-				8385E4272306C9E1001CA774 /* Main.storyboard in Resources */,
+				8385E4272306C9E1001CA774 /* beforeLogin.storyboard in Resources */,
+				835DE5F523156716006DD07D /* afterLogin.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,12 +220,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8385E4252306C9E1001CA774 /* Main.storyboard */ = {
+		8385E4252306C9E1001CA774 /* beforeLogin.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8385E4262306C9E1001CA774 /* Base */,
 			);
-			name = Main.storyboard;
+			name = beforeLogin.storyboard;
 			sourceTree = "<group>";
 		};
 		8385E42A2306C9E2001CA774 /* LaunchScreen.storyboard */ = {

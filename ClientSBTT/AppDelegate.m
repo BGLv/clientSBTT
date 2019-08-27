@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "connectionModelController.h"
 #import "connectToServerViewController.h"
+#import "ViewControllers/ViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,7 +28,36 @@
         connectToServerViewController *VC = (connectToServerViewController *) rootController;
         VC.connMC = [[connectionModelController alloc] init];
     }
+    
+    //Add observer to know of success login state
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToAfterLoginStoryboard) name:@"clientLoginSucceed" object:nil];
+    
     return YES;
+}
+
+//delete all storyboard views and set new storyboard
+-(void) goToAfterLoginStoryboard {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"afterLogin" bundle:nil];
+    
+    UIViewController *viewController = [storyboard instantiateInitialViewController];
+    if (!viewController) {
+        return;
+    }
+    //inject dependency to ViewController
+    if([viewController isKindOfClass:[UINavigationController class]])
+        viewController = [[(UINavigationController*)viewController childViewControllers] firstObject];
+    if([viewController isKindOfClass:[ViewController class]]){
+        ViewController *VC = (ViewController *) viewController;
+        VC.connMC = [[connectionModelController alloc] init];
+    }
+    
+    UIViewController *presentedViewController = [[[self window] rootViewController] presentedViewController];
+    
+    [presentedViewController presentViewController:viewController animated:YES completion:nil];
+    
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
+    self.window.rootViewController = viewController;
+    
 }
 
 
