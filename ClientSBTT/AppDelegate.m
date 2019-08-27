@@ -43,15 +43,17 @@
     if (!viewController) {
         return;
     }
-    //inject dependency to ViewController
-    if([viewController isKindOfClass:[UINavigationController class]])
-        viewController = [[(UINavigationController*)viewController childViewControllers] firstObject];
-    if([viewController isKindOfClass:[ViewController class]]){
-        ViewController *VC = (ViewController *) viewController;
-        VC.connMC = [[connectionModelController alloc] init];
-    }
     
-    UIViewController *presentedViewController = [[[self window] rootViewController] presentedViewController];
+    UIViewController <connProtoMC> *firstControllerInsideTabBar = nil;
+    //inject dependency to ViewController
+    if([viewController isKindOfClass:[UITabBarController class]]){
+        firstControllerInsideTabBar = [[(UITabBarController*)viewController childViewControllers] firstObject];
+        if([firstControllerInsideTabBar respondsToSelector:@selector(setConnMC:)])
+            if([[self.window.rootViewController.childViewControllers firstObject] respondsToSelector:@selector(setConnMC:)])
+                firstControllerInsideTabBar.connMC = [(id <connProtoMC>)[self.window.rootViewController.childViewControllers firstObject] connMC];
+    }
+  
+    UIViewController *presentedViewController = self.window.rootViewController.presentedViewController;
     
     [presentedViewController presentViewController:viewController animated:YES completion:nil];
     

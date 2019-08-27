@@ -13,6 +13,7 @@
 		8352CBCD230746A000210790 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352CBCC230746A000210790 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8352CBD02307479100210790 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8352CBCF2307479100210790 /* libxml2.tbd */; };
 		835DE5F523156716006DD07D /* afterLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835DE5F423156716006DD07D /* afterLogin.storyboard */; };
+		835DE5FB2315BEA8006DD07D /* DepartureTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DE5FA2315BEA8006DD07D /* DepartureTableViewController.m */; };
 		8385E4212306C9E1001CA774 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E4202306C9E1001CA774 /* AppDelegate.m */; };
 		8385E4242306C9E1001CA774 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E4232306C9E1001CA774 /* ViewController.m */; };
 		8385E4272306C9E1001CA774 /* beforeLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8385E4252306C9E1001CA774 /* beforeLogin.storyboard */; };
@@ -33,6 +34,8 @@
 		8352CBCC230746A000210790 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		8352CBCF2307479100210790 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		835DE5F423156716006DD07D /* afterLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = afterLogin.storyboard; sourceTree = "<group>"; };
+		835DE5F92315BEA8006DD07D /* DepartureTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepartureTableViewController.h; sourceTree = "<group>"; };
+		835DE5FA2315BEA8006DD07D /* DepartureTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepartureTableViewController.m; sourceTree = "<group>"; };
 		8385E41C2306C9E1001CA774 /* ClientSBTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClientSBTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8385E41F2306C9E1001CA774 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8385E4202306C9E1001CA774 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				8321A2842306EF37006CA31A /* loginViewController.m */,
 				8321A2802306ECF0006CA31A /* connectToServerViewController.h */,
 				8321A2812306ECF0006CA31A /* connectToServerViewController.m */,
+				835DE5F92315BEA8006DD07D /* DepartureTableViewController.h */,
+				835DE5FA2315BEA8006DD07D /* DepartureTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				8352CBCD230746A000210790 /* GDataXMLNode.m in Sources */,
 				8321A2822306ECF0006CA31A /* connectToServerViewController.m in Sources */,
 				8385E42F2306C9E2001CA774 /* main.m in Sources */,
+				835DE5FB2315BEA8006DD07D /* DepartureTableViewController.m in Sources */,
 				8385E4212306C9E1001CA774 /* AppDelegate.m in Sources */,
 				8321A2882306F3EA006CA31A /* createAccountViewController.m in Sources */,
 				8321A2852306EF37006CA31A /* loginViewController.m in Sources */,

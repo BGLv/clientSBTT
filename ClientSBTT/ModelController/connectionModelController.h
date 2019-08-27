@@ -26,4 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol connProtoMC <NSObject>
+
+@required
+-(connectionModelController *) connMC;
+-(void) setConnMC:(connectionModelController *) connMC;
+
+@end
+
 NS_ASSUME_NONNULL_END
