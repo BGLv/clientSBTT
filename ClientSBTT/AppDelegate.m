@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "connectionModelController.h"
 #import "connectToServerViewController.h"
-#import "ViewControllers/ViewController.h"
 
 @interface AppDelegate ()
 
@@ -59,6 +58,8 @@
     
     [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
     self.window.rootViewController = viewController;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"clientLoginSucceed" object:nil];
     
 }
 

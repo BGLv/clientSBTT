@@ -70,5 +70,15 @@
  // Pass the selected object to the new view controller.
  }
  */
+- (IBAction)ipAddressEntered:(id)sender {
+    [self resignFirstResponder];
+}
+
+- (IBAction)serverPortEntered:(id)sender {
+    [self resignFirstResponder];
+}
+
+
+
 
 @end

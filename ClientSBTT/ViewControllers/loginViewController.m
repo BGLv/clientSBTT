@@ -10,7 +10,6 @@
 #import "connectionModelController.h"
 #import "GDataXMLNode.h"
 #import "createAccountViewController.h"
-#import "ViewController.h"
 
 @interface loginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -89,5 +88,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)hideKeyboardWhenDone:(id)sender {
+    [self resignFirstResponder];
+}
+
 
 @end
