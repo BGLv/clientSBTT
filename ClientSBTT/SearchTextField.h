@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchTextFieldTheme;
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, Direction){
+    down,
+    up
+};
 
 @interface SearchTextField : UITextField
 
@@ -20,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger * maxResultListHeigh;
 
 //indicate if this field has been interracted with yet
-@property (nonatomic) BOOL interractedWidth;//!!!!
+@property (nonatomic) BOOL interactedWidth;//!!!!
 
 //indicate if keyboard is showing or not
 @property (nonatomic) BOOL keyboardIsShowind;
@@ -29,9 +34,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSNumber * typingStoppedDelay;
 
 //Set your custom visual theme, or just choose between pre-defined SearchTextFieldTheme.lightTheme() and searchTextField.darkTheme() themes
+@property (nonatomic) SearchTextFieldTheme *theme;
+
+//Show the suggestions list without filter when the text field is focused
+@property (nonatomic) BOOL startVisible;
+
+//Show the suggestions list without filter even if the text field is not focused
+@property (nonatomic) BOOL startVisibleWithoutInteraction;
+
+@property (nonatomic) NSMutableDictionary* highlightAttributes;
 
 
-+(SearchTextFieldTheme)
+
+//Handle text field changes
+-(void)textFieldDidChange;
 
 @end
 

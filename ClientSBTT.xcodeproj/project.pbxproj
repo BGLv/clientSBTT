@@ -17,6 +17,7 @@
 		835DE6012318059C006DD07D /* SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DE6002318059C006DD07D /* SearchTextField.m */; };
 		835DE604231861EE006DD07D /* SearchTextFieldTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DE603231861EE006DD07D /* SearchTextFieldTheme.m */; };
 		835DE606231862F0006DD07D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835DE605231862F0006DD07D /* UIKit.framework */; };
+		835DE6092319300C006DD07D /* SearchTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 835DE6082319300C006DD07D /* SearchTextFieldItem.m */; };
 		8385E4212306C9E1001CA774 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E4202306C9E1001CA774 /* AppDelegate.m */; };
 		8385E4272306C9E1001CA774 /* beforeLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8385E4252306C9E1001CA774 /* beforeLogin.storyboard */; };
 		8385E4292306C9E2001CA774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8385E4282306C9E2001CA774 /* Assets.xcassets */; };
@@ -43,6 +44,8 @@
 		835DE602231861EE006DD07D /* SearchTextFieldTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTextFieldTheme.h; sourceTree = "<group>"; };
 		835DE603231861EE006DD07D /* SearchTextFieldTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTextFieldTheme.m; sourceTree = "<group>"; };
 		835DE605231862F0006DD07D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		835DE6072319300C006DD07D /* SearchTextFieldItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTextFieldItem.h; sourceTree = "<group>"; };
+		835DE6082319300C006DD07D /* SearchTextFieldItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTextFieldItem.m; sourceTree = "<group>"; };
 		8385E41C2306C9E1001CA774 /* ClientSBTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClientSBTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8385E41F2306C9E1001CA774 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8385E4202306C9E1001CA774 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 		8385E4132306C9E1001CA774 = {
 			isa = PBXGroup;
 			children = (
+				835DE6072319300C006DD07D /* SearchTextFieldItem.h */,
+				835DE6082319300C006DD07D /* SearchTextFieldItem.m */,
 				8385E41E2306C9E1001CA774 /* ClientSBTT */,
 				8385E41D2306C9E1001CA774 /* Products */,
 				8352CBCE2307479100210790 /* Frameworks */,
@@ -142,9 +147,9 @@
 				8385E42D2306C9E2001CA774 /* Info.plist */,
 				8385E42E2306C9E2001CA774 /* main.m */,
 				835DE5FF2318059C006DD07D /* SearchTextField.h */,
+				835DE6002318059C006DD07D /* SearchTextField.m */,
 				835DE602231861EE006DD07D /* SearchTextFieldTheme.h */,
 				835DE603231861EE006DD07D /* SearchTextFieldTheme.m */,
-				835DE6002318059C006DD07D /* SearchTextField.m */,
 			);
 			path = ClientSBTT;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				835DE604231861EE006DD07D /* SearchTextFieldTheme.m in Sources */,
 				8385E4212306C9E1001CA774 /* AppDelegate.m in Sources */,
 				8321A2882306F3EA006CA31A /* createAccountViewController.m in Sources */,
+				835DE6092319300C006DD07D /* SearchTextFieldItem.m in Sources */,
 				8321A2852306EF37006CA31A /* loginViewController.m in Sources */,
 				8385E4372306CA5D001CA774 /* connectionModelController.m in Sources */,
 			);
