@@ -9,6 +9,12 @@
 #import "SearchTextFieldItem.h"
 #import <UIKit/UIKit.h>
 
+@interface SearchTextFieldItem ()
+
+
+
+@end
+
 @implementation SearchTextFieldItem
 
 

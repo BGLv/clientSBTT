@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, Direction){
     up
 };
 
-@interface SearchTextField : UITextField
+@interface SearchTextField : UITextField <UITableViewDataSource, UITableViewDelegate>
 
 //maximum numbers of result to be shown in the suggestion list
 @property (nonatomic) NSInteger * maxNumbersOfResults;
@@ -44,10 +44,38 @@ typedef NS_ENUM(NSUInteger, Direction){
 
 @property (nonatomic) NSMutableDictionary* highlightAttributes;
 
+@property (nonatomic) NSString * startFilteringAfter;
 
+/// If startFilteringAfter is set, and startSuggestingImmediately is true, the list of suggestions appear immediately
+@property (nonatomic) BOOL startSuggestingImmediately;
+
+
+//Set the result list's header
+@property (nonatomic) UIView *resultsListHeader;
+
+//force the result list to adapt to RTL languages
+@property (nonatomic) BOOL forceRightToLeft;
+
+
+//When InlineMode is true, the suggestion appear in the same line that the entered string. It's useful for email domain suggestion for example.
+@property (nonatomic) BOOL inlineMode;
+
+
+//Allow to decide the comparision options
+@property (nonatomic) NSStringCompareOptions comparisonOptions;
 
 //Handle text field changes
 -(void)textFieldDidChange;
+
+
+//Force no filtering (display the entire filtered data source)
+@property (nonatomic) BOOL forceNoFiltering;
+
+//Move the table around to customize for your layout
+@property (nonatomic) CGFloat tableXOffset;
+@property (nonatomic) CGFloat tableYOffset;
+@property (nonatomic) CGFloat tableCornerRadius;
+@property (nonatomic) CGFloat tableBottomMargin;
 
 @end
 

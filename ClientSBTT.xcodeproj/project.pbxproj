@@ -116,8 +116,6 @@
 		8385E4132306C9E1001CA774 = {
 			isa = PBXGroup;
 			children = (
-				835DE6072319300C006DD07D /* SearchTextFieldItem.h */,
-				835DE6082319300C006DD07D /* SearchTextFieldItem.m */,
 				8385E41E2306C9E1001CA774 /* ClientSBTT */,
 				8385E41D2306C9E1001CA774 /* Products */,
 				8352CBCE2307479100210790 /* Frameworks */,
@@ -148,6 +146,8 @@
 				8385E42E2306C9E2001CA774 /* main.m */,
 				835DE5FF2318059C006DD07D /* SearchTextField.h */,
 				835DE6002318059C006DD07D /* SearchTextField.m */,
+				835DE6072319300C006DD07D /* SearchTextFieldItem.h */,
+				835DE6082319300C006DD07D /* SearchTextFieldItem.m */,
 				835DE602231861EE006DD07D /* SearchTextFieldTheme.h */,
 				835DE603231861EE006DD07D /* SearchTextFieldTheme.m */,
 			);
