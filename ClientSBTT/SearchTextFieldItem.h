@@ -21,11 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString* subtitle;
 @property (nonatomic) UIImage* image;
 
--(void) initWithTitle: (NSString*) title subtitle: (NSString *)subtitle image: (UIImage *)image;
+-(instancetype) initWithTitle: (NSString*) title subtitle: (NSString *)subtitle image: (UIImage *)image;
 
--(void) initWithTitle: (NSString*) title subtitle: (NSString *) subtitle;
+-(instancetype) initWithTitle: (NSString*) title subtitle: (NSString *) subtitle;
 
--(void)initWithTitle: (NSString *)title;
+-(instancetype)initWithTitle: (NSString *)title;
 
 @end
 

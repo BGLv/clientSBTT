@@ -7,8 +7,10 @@
 //
 
 #import "DepartureTableViewController.h"
-
+#import "../SearchTextField.h"
 @interface DepartureTableViewController ()
+@property (weak, nonatomic) IBOutlet SearchTextField *fromSearchTextField;
+@property (weak, nonatomic) IBOutlet SearchTextField *toSearchTextField;
 
 @end
 
@@ -16,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.fromSearchTextField filterStrings:@[@"red",@"green",@"blue"]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -23,7 +26,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 
 - (IBAction)hideKeyboardWhenDone:(id)sender {
     [self resignFirstResponder];

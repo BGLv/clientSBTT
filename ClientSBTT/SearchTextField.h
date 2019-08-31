@@ -64,9 +64,28 @@ typedef NS_ENUM(NSUInteger, Direction){
 //Allow to decide the comparision options
 @property (nonatomic) NSStringCompareOptions comparisonOptions;
 
+
+//closure to handle when user stops typing
+typedef void(^STFTypingHandlerBlock)(void);
+@property (nonatomic,copy) STFTypingHandlerBlock userStoppedTypingHandler;
+
+//closure to handle when the user pick an item
+typedef void(^SearchTextFieldItemHandler)(NSMutableArray * filteredResults, NSInteger index);
+@property (nonatomic, copy) SearchTextFieldItemHandler itemSelectionHandler;
+
 //Handle text field changes
 -(void)textFieldDidChange;
+-(void)typingDidStop;
 
+// Set an array of SearchTextFieldItem's to be used for suggestions
+-(void)filterItems: (NSMutableArray *) items;
+
+
+//Set an array of strings to be used for suggestions
+-(void)filterStrings:(NSArray *) strings;
+
+//Min number of characters to start filtering
+@property (nonatomic) NSInteger minCharactersNumberToStartFiltering;
 
 //Force no filtering (display the entire filtered data source)
 @property (nonatomic) BOOL forceNoFiltering;

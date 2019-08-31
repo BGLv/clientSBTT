@@ -18,20 +18,29 @@
 @implementation SearchTextFieldItem
 
 
-- (void)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image
 {
-    self.title = title;
-    self.subtitle = subtitle;
-    self.image = image;
+    if(self = [super init]){
+        self.title = title;
+        self.subtitle = subtitle;
+        self.image = image;
+    }
+    return self;
 }
 
-- (void)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle{
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle{
+    if(self = [super init]){
     self.title = title;
     self.subtitle = subtitle;
+    }
+    return self;
 }
 
-- (void)initWithTitle:(NSString *)title{
-    self.title=title;
+- (instancetype)initWithTitle:(NSString *)title{
+    if (self=[super init]){
+        self.title=title;
+    }
+    return self;
 }
 
 @end

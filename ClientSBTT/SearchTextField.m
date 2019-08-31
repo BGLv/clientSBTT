@@ -25,7 +25,7 @@
 @property (nonatomic, readonly) UIActivityIndicatorView* indicator;
 @property (nonatomic) CGFloat maxTableViewSize;
 @property (nonatomic) NSMutableArray *filteredResults;
-@property (nonatomic) NSMutableArray *filterDatasource;
+@property (nonatomic) NSMutableArray *filterDataSource;
 @property (nonatomic) UILabel *placeholderLabel;
 
 
@@ -69,6 +69,7 @@
         
         
         _inlineMode=false;
+        _minCharactersNumberToStartFiltering=0;
         _comparisonOptions = NSCaseInsensitiveSearch;
         
         //Move the table around to customize for your layout
@@ -84,7 +85,7 @@
         _indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         _maxTableViewSize = 0;
         _filteredResults = [[NSMutableArray alloc] init];
-        _filterDatasource = [[NSMutableArray alloc] init];
+        _filterDataSource = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -124,8 +125,8 @@
     }
 }
 
-- (void)setFilterDatasource:(NSMutableArray *)filterDatasource{
-    _filterDatasource=filterDatasource;
+- (void)setFilterDataSource:(NSMutableArray *)filterDatasource{
+    _filterDataSource=filterDatasource;
     [self filterForceShowAll: self.forceNoFiltering];
     [self buildSearchTableView];
     
@@ -160,6 +161,9 @@
     [self buildPlaceholderLabel];
 }
 
+- (void)typingDidStop{
+    [self userStoppedTypingHandler];
+}
 
 //clean filtered results
 -(void)clearResults{
@@ -192,7 +196,7 @@
     }
     
     
-    for (SearchTextFieldItem *item in self.filterDatasource) {
+    for (SearchTextFieldItem *item in self.filterDataSource) {
         if(!self.inlineMode){
             
             //find text in title and subtitle
@@ -364,7 +368,118 @@
 }
 
 
--(NSInteger *)maxNumbersOfResults{
+-(void)prepareDrawTableResult{
+    CGRect frame;
+    if(self.superview){
+        frame = [self.superview convertRect:self.frame toView:UIApplication.sharedApplication.keyWindow];
+    }else{return;}
+    if(self.keyboardFrameCGRect){
+        CGRect newFrame = frame;
+        newFrame.size.height += self.theme.cellHeigh;
+        
+        if(CGRectIntersectsRect([self.keyboardFrameCGRect CGRectValue], newFrame)){
+            self.direction = up;
+        }else{
+            self.direction = down;
+        }
+        [self redrawSearchTableView];
+    }else{
+        if(self.center.y+self.theme.cellHeigh > UIApplication.sharedApplication.keyWindow.frame.size.height){
+            self.direction = up;
+        }else{
+            self.direction = down;
+        }
+    }
+}
+
+-(void)buildPlaceholderLabel{
+    CGRect newRect = [self placeholderRectForBounds:self.bounds];
+    CGRect caretRect = [self caretRectForPosition:self.beginningOfDocument];
+    const CGRect textRect = [self textRectForBounds:self.bounds];
+    UITextRange *range = [self textRangeFromPosition:self.beginningOfDocument toPosition:self.endOfDocument];
+    if(range){
+        caretRect = [self firstRectForRange:range];
+    }
+    
+    newRect.origin.x = caretRect.origin.x + caretRect.size.width + textRect.origin.x;
+    newRect.size.width = newRect.size.width - newRect.origin.x;
+    if(self.placeholderLabel){
+        self.placeholderLabel.font = self.font;
+        self.placeholderLabel.frame = newRect;
+    }else{
+        self.placeholderLabel = [[UILabel alloc]initWithFrame:newRect];
+        self.placeholderLabel.font = self.font;
+        self.placeholderLabel.backgroundColor = UIColor.clearColor;
+        self.placeholderLabel.lineBreakMode = NSLineBreakByClipping;
+        
+        if(self.attributedPlaceholder){
+            self.placeholderLabel.textColor = [self.attributedPlaceholder attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:nil];
+        }else{
+            self.placeholderLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+        }
+        [self addSubview:self.placeholderLabel];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    tableView.hidden = !self.interactedWidth || ([self.filteredResults count] == 0);
+    self.shadowView.hidden = !self.interactedWidth || ([self.filteredResults count] == 0);
+    
+    if(self.maxNumbersOfResults>0){
+        return MIN((self.filteredResults.count),((NSUInteger)self.maxNumbersOfResults));
+    }else{
+        return [self.filteredResults count];
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[SearchTextField cellIdentifier]];
+    
+    if (nil==cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:[SearchTextField cellIdentifier]];
+    }
+    
+    cell.backgroundColor = UIColor.clearColor;
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.preservesSuperviewLayoutMargins = false;
+    cell.textLabel.font = self.theme.font;
+    cell.detailTextLabel.font = [UIFont fontWithName:self.theme.font.fontName size:self.theme.font.pointSize];
+    cell.textLabel.textColor = self.theme.fontColor;
+    cell.detailTextLabel.textColor = self.theme.subtitleFontColor;
+    
+    cell.textLabel.text = [self.filteredResults[indexPath.row] title];
+    //filteredResults[(indexPath as NSIndexPath).row].title
+    cell.detailTextLabel.text = [self.filteredResults[indexPath.row] subtitle];
+    cell.textLabel.attributedText = [self.filteredResults[indexPath.row] attributedTitle];
+    cell.detailTextLabel.attributedText = [self.filteredResults[indexPath.row] attributedSubtitle];
+    
+    cell.imageView.image = [[UIImage alloc] initWithCIImage:[self.filteredResults[indexPath.row] image]];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return self.theme.cellHeigh;
+
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (nil == self.itemSelectionHandler){
+        self.text=[self.filteredResults[indexPath.row] title];
+    } else {
+        NSInteger index = indexPath.row;
+        self.itemSelectionHandler(self.filteredResults, index);
+    }
+    [self clearResults];
+}
+
+/*-(NSInteger *)maxNumbersOfResults{
     if(nil ==_maxNumbersOfResults){
         _maxNumbersOfResults = 0;
     }
@@ -377,8 +492,20 @@
     }
     return _maxResultListHeigh;
     
+}*/
+
+
+-(void)filterItems: (NSMutableArray *) items {
+    self.filterDataSource = items;
 }
 
-
+- (void)filterStrings:(NSArray *) strings{
+    NSMutableArray *items=[[NSMutableArray alloc] init];
+    for (NSString *string in strings) {
+        SearchTextFieldItem *stfItem = [[SearchTextFieldItem alloc] initWithTitle:string];
+        [items addObject:stfItem];
+    }
+    [self filterItems:items];
+}
 
 @end

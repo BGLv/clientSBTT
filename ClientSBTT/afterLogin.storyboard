@@ -70,7 +70,7 @@
                                                                         <action selector="hideKeyboardWhenDone:" destination="PIn-5z-D6T" eventType="editingDidEndOnExit" id="NpW-ub-B38"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To: Destination station" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0G0-Di-LKA">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To: Destination station" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0G0-Di-LKA" customClass="SearchTextField">
                                                                     <rect key="frame" x="0.0" y="38.5" width="228" height="30.5"/>
                                                                     <nil key="textColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -105,6 +105,10 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="search" id="ICt-h8-0cl"/>
+                    <connections>
+                        <outlet property="fromSearchTextField" destination="erv-4J-DFn" id="9nT-ci-LR3"/>
+                        <outlet property="toSearchTextField" destination="0G0-Di-LKA" id="Qd8-rH-4kS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfv-KW-TU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
