@@ -18,8 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.fromSearchTextField filterStrings:@[@"red",@"green",@"blue"]];
-    
+    [self.fromSearchTextField filterStrings:@[@"Kiev",@"Lviv",@"Lutsk"]];
+    [self.toSearchTextField filterStrings:@[@"Kiev",@"Lviv",@"Lutsk"]];
+    //[self.fromSearchTextField setStartVisible:true];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

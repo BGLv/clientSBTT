@@ -84,6 +84,16 @@ typedef void(^SearchTextFieldItemHandler)(NSMutableArray * filteredResults, NSIn
 //Set an array of strings to be used for suggestions
 -(void)filterStrings:(NSArray *) strings;
 
+-(void)textFieldDidBeginEditing;
+-(void)textFieldDidEndEditing;
+-(void) textFieldDidEndEditingOnExit;
+
+
+//Handle keyboard events
+-(void)keyboardWillShow:(NSNotification *) notification;
+-(void)keyboardWillHide:(NSNotification *) notification;
+-(void)keyboardDidChangeFrame:(NSNotification *) notification;
+
 //Min number of characters to start filtering
 @property (nonatomic) NSInteger minCharactersNumberToStartFiltering;
 

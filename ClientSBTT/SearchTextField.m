@@ -34,6 +34,7 @@
 
 @implementation SearchTextField
 
+@synthesize theme = _theme;
 
 + (NSString *)cellIdentifier{
     
@@ -47,47 +48,58 @@
  // Drawing code
  }
  */
-
-- (instancetype)init
+- (void)dealloc
 {
-    self = [super init];
-    if (self) {
-        //init all property's
-        //public
-        _maxNumbersOfResults= 0;
-        _maxResultListHeigh = 0;
-        _interactedWidth=false;//!!!
-        _keyboardIsShowind=false;
-        _typingStoppedDelay = @0.8;
-        _theme = [SearchTextFieldTheme lightTheme];
-        _highlightAttributes = [@{NSFontAttributeName:[UIFont boldSystemFontOfSize:10]} mutableCopy]; /*_cellIdentifier=@"APSearchTextFieldCell";*/
-        _startVisible = false;
-        _startVisibleWithoutInteraction = false;
-        
-        _startSuggestingImmediately = false;
-        _forceRightToLeft=false;
-        
-        
-        _inlineMode=false;
-        _minCharactersNumberToStartFiltering=0;
-        _comparisonOptions = NSCaseInsensitiveSearch;
-        
-        //Move the table around to customize for your layout
-        _tableXOffset = 0.0;
-        _tableYOffset = 0.0;
-        _tableCornerRadius = 2.0;
-        _tableBottomMargin = 10.0;
-        _forceNoFiltering = false;
-        
-        //private
-        _direction=down;
-        _fontConversionRate = 0.7;
-        _indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        _maxTableViewSize = 0;
-        _filteredResults = [[NSMutableArray alloc] init];
-        _filterDataSource = [[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    // if (self) {
+    //init all property's
+    //public
+    _maxNumbersOfResults= 0;
+    _maxResultListHeigh = 0;
+    _interactedWidth=false;//!!!
+    _keyboardIsShowind=false;
+    _typingStoppedDelay = @0.8;
+    _theme = [SearchTextFieldTheme lightTheme];
+    _highlightAttributes = [@{NSFontAttributeName:[UIFont boldSystemFontOfSize:10]} mutableCopy]; /*_cellIdentifier=@"APSearchTextFieldCell";*/
+    _startVisible = false;
+    _startVisibleWithoutInteraction = false;
+    
+    _startSuggestingImmediately = false;
+    _forceRightToLeft=false;
+    
+    
+    _inlineMode=false;
+    _minCharactersNumberToStartFiltering=0;
+    _comparisonOptions = NSCaseInsensitiveSearch;
+    
+    //Move the table around to customize for your layout
+    _tableXOffset = 0.0;
+    _tableYOffset = 0.0;
+    _tableCornerRadius = 2.0;
+    _tableBottomMargin = 10.0;
+    _forceNoFiltering = false;
+    
+    //private
+    _direction=down;
+    _fontConversionRate = 0.7;
+    _indicator=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _maxTableViewSize = 0;
+    _filteredResults = [[NSMutableArray alloc] init];
+    _filterDataSource = [[NSMutableArray alloc] init];
+    // }
+    //return self;
+}
+
+- (SearchTextFieldTheme *)theme{
+    if(!_theme){
+        _theme=[SearchTextFieldTheme lightTheme];
     }
-    return self;
+    return _theme;
 }
 
 - (void)setTheme:(SearchTextFieldTheme *)theme{
@@ -207,7 +219,7 @@
                 item.attributedSubtitle = [[NSMutableAttributedString alloc]initWithString: nil!=item.subtitle?item.subtitle:@""];
                 
                 [item.attributedTitle setAttributes:self.highlightAttributes range:titleFilterRange];
-     
+                
                 if (NSNotFound!=subtitleFilterRange.location){
                     [item.attributedSubtitle setAttributes:[self highlightAttributesForSubtile] range:subtitleFilterRange];
                 }
@@ -315,6 +327,7 @@
             CGRect keyboardFrame;
             [self.keyboardFrameCGRect getValue:&keyboardFrame];
             if (self.keyboardIsShowind && self.keyboardFrameCGRect){
+                NSLog(@"%f",tableView.contentSize.height);
                 tableHeight = MIN((tableView.contentSize.height),(UIScreen.mainScreen.bounds.size.height - frame.origin.y - frame.size.height -keyboardFrame.size.height));
             }else{
                 tableHeight = MIN((tableView.contentSize.height),(UIScreen.mainScreen.bounds.size.height - frame.origin.y - frame.size.height));
@@ -428,9 +441,11 @@
     if(self.maxNumbersOfResults>0){
         return MIN((self.filteredResults.count),((NSUInteger)self.maxNumbersOfResults));
     }else{
+        NSLog(@"%lu",(unsigned long)[self.filteredResults count]);
         return [self.filteredResults count];
     }
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -465,7 +480,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return self.theme.cellHeigh;
-
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -480,20 +495,72 @@
 }
 
 /*-(NSInteger *)maxNumbersOfResults{
-    if(nil ==_maxNumbersOfResults){
-        _maxNumbersOfResults = 0;
-    }
-    return _maxNumbersOfResults;
+ if(nil ==_maxNumbersOfResults){
+ _maxNumbersOfResults = 0;
+ }
+ return _maxNumbersOfResults;
+ }
+ 
+ - (NSInteger *)maxResultListHeigh{
+ if(nil ==_maxResultListHeigh){
+ _maxResultListHeigh = 0;
+ }
+ return _maxResultListHeigh;
+ 
+ }*/
+
+- (void)willMoveToWindow:(UIWindow *)newWindow{
+    [super willMoveToWindow:newWindow];
+    [self.tableView removeFromSuperview];
 }
 
-- (NSInteger *)maxResultListHeigh{
-    if(nil ==_maxResultListHeigh){
-        _maxResultListHeigh = 0;
-    }
-    return _maxResultListHeigh;
+- (void)willMoveToSuperview:(UIView *)newSuperview{
+    [super willMoveToSuperview:newSuperview];
     
-}*/
+    [self addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+    [self addTarget:self action:@selector(textFieldDidBeginEditing) forControlEvents:UIControlEventEditingDidBegin];
+    [self addTarget:self action:@selector(textFieldDidEndEditing) forControlEvents:UIControlEventEditingDidEnd];
+    [self addTarget:self action:@selector(textFieldDidEndEditingOnExit) forControlEvents:UIControlEventEditingDidEndOnExit];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
+}
 
+-(void)keyboardWillShow:(NSNotification *) notification{
+    
+    if (!self.keyboardIsShowind && self.isEditing){
+        
+        self.keyboardIsShowind = true;
+        self.keyboardFrameCGRect = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
+        self.interactedWidth = true;
+        [self prepareDrawTableResult];
+    }
+    
+}
+
+-(void)keyboardWillHide:(NSNotification *) notification{
+    
+    if(self.keyboardIsShowind){
+        self.keyboardIsShowind=false;
+        self.direction=down;
+        [self redrawSearchTableView];
+    }
+    
+}
+
+-(void)keyboardDidChangeFrame:(NSNotification *) notification{
+    double delayInSeconds = 0.1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    __weak SearchTextField *weakSelf = self;
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        weakSelf.keyboardFrameCGRect = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
+        [weakSelf prepareDrawTableResult];
+    });
+}
 
 -(void)filterItems: (NSMutableArray *) items {
     self.filterDataSource = items;
@@ -506,6 +573,58 @@
         [items addObject:stfItem];
     }
     [self filterItems:items];
+}
+
+-(void)textFieldDidBeginEditing{
+    if(self.startVisible || self.startVisibleWithoutInteraction){
+        
+        [self clearResults];
+        [self filterForceShowAll:true];
+        
+    }
+    self.placeholderLabel.attributedText = nil;
+}
+
+-(void)textFieldDidEndEditing{
+    [self clearResults];
+    [self.tableView reloadData];
+    self.placeholderLabel.attributedText = nil;
+}
+
+-(void) textFieldDidEndEditingOnExit{
+    SearchTextFieldItem *firstElement = [self.filteredResults firstObject];
+    if(firstElement){
+        if(self.itemSelectionHandler){
+            self.itemSelectionHandler(self.filteredResults, 0);
+        }else{
+            if(self.inlineMode && (nil!=self.startFilteringAfter)){
+                NSArray *stringElements = [self.text componentsSeparatedByString:self.startFilteringAfter];
+                self.text = [[[stringElements firstObject] stringByAppendingString: self.startFilteringAfter] stringByAppendingString: firstElement.title];
+            }else{
+                self.text = firstElement.title;
+            }
+        }
+    }
+}
+
+- (void)layoutSubviews{
+    
+    [super layoutSubviews];
+    if(self.inlineMode){
+        [self buildPlaceholderLabel];
+    }else{
+        [self buildSearchTableView];
+    }
+    //create loading indicator
+    self.indicator.hidesWhenStopped=true;
+    self.rightView = self.indicator;
+    
+}
+
+- (CGRect)rightViewRectForBounds:(CGRect)bounds{
+    CGRect rightFrame = [super rightViewRectForBounds:bounds];
+    rightFrame.origin.x -= 5;
+    return rightFrame;
 }
 
 @end
