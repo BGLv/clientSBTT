@@ -24,6 +24,10 @@
 		8385E42C2306C9E2001CA774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8385E42A2306C9E2001CA774 /* LaunchScreen.storyboard */; };
 		8385E42F2306C9E2001CA774 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E42E2306C9E2001CA774 /* main.m */; };
 		8385E4372306CA5D001CA774 /* connectionModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8385E4362306CA5D001CA774 /* connectionModelController.m */; };
+		83C105D1231D4707006E41DA /* TrainSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C105D0231D4707006E41DA /* TrainSelectionTableViewController.m */; };
+		83C105DE231D9874006E41DA /* toOrderTicketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C105DD231D9874006E41DA /* toOrderTicketTableViewCell.m */; };
+		83C105E1231D9A8E006E41DA /* trainInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C105E0231D9A8E006E41DA /* trainInfoTableViewCell.m */; };
+		83C105E4231D9D37006E41DA /* travelDurationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C105E3231D9D37006E41DA /* travelDurationTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,14 @@
 		8385E42E2306C9E2001CA774 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8385E4352306CA5D001CA774 /* connectionModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = connectionModelController.h; sourceTree = "<group>"; };
 		8385E4362306CA5D001CA774 /* connectionModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = connectionModelController.m; sourceTree = "<group>"; };
+		83C105CF231D4707006E41DA /* TrainSelectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrainSelectionTableViewController.h; sourceTree = "<group>"; };
+		83C105D0231D4707006E41DA /* TrainSelectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainSelectionTableViewController.m; sourceTree = "<group>"; };
+		83C105DC231D9874006E41DA /* toOrderTicketTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toOrderTicketTableViewCell.h; sourceTree = "<group>"; };
+		83C105DD231D9874006E41DA /* toOrderTicketTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = toOrderTicketTableViewCell.m; sourceTree = "<group>"; };
+		83C105DF231D9A8E006E41DA /* trainInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = trainInfoTableViewCell.h; sourceTree = "<group>"; };
+		83C105E0231D9A8E006E41DA /* trainInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = trainInfoTableViewCell.m; sourceTree = "<group>"; };
+		83C105E2231D9D37006E41DA /* travelDurationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = travelDurationTableViewCell.h; sourceTree = "<group>"; };
+		83C105E3231D9D37006E41DA /* travelDurationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = travelDurationTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +112,14 @@
 				8321A2812306ECF0006CA31A /* connectToServerViewController.m */,
 				835DE5F92315BEA8006DD07D /* DepartureTableViewController.h */,
 				835DE5FA2315BEA8006DD07D /* DepartureTableViewController.m */,
+				83C105CF231D4707006E41DA /* TrainSelectionTableViewController.h */,
+				83C105D0231D4707006E41DA /* TrainSelectionTableViewController.m */,
+				83C105DC231D9874006E41DA /* toOrderTicketTableViewCell.h */,
+				83C105DD231D9874006E41DA /* toOrderTicketTableViewCell.m */,
+				83C105DF231D9A8E006E41DA /* trainInfoTableViewCell.h */,
+				83C105E0231D9A8E006E41DA /* trainInfoTableViewCell.m */,
+				83C105E2231D9D37006E41DA /* travelDurationTableViewCell.h */,
+				83C105E3231D9D37006E41DA /* travelDurationTableViewCell.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -226,7 +246,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8352CBCD230746A000210790 /* GDataXMLNode.m in Sources */,
+				83C105E4231D9D37006E41DA /* travelDurationTableViewCell.m in Sources */,
+				83C105DE231D9874006E41DA /* toOrderTicketTableViewCell.m in Sources */,
+				83C105D1231D4707006E41DA /* TrainSelectionTableViewController.m in Sources */,
 				8321A2822306ECF0006CA31A /* connectToServerViewController.m in Sources */,
+				83C105E1231D9A8E006E41DA /* trainInfoTableViewCell.m in Sources */,
 				8385E42F2306C9E2001CA774 /* main.m in Sources */,
 				835DE5FB2315BEA8006DD07D /* DepartureTableViewController.m in Sources */,
 				835DE6012318059C006DD07D /* SearchTextField.m in Sources */,

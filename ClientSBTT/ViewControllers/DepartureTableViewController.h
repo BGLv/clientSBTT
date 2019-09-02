@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DepartureTableViewController : UITableViewController <connProtoMC>
+@interface DepartureTableViewController : UITableViewController <connProtoMC, UIScrollViewDelegate>
 
 @property (nonatomic, strong) connectionModelController * connMC;
 

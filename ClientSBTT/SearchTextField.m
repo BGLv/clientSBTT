@@ -11,6 +11,9 @@
 #import <UIKit/UIKit.h>
 #import "SearchTextFieldItem.h"
 
+//default 0.2
+static const double animDurr = 0.2;
+
 @interface SearchTextField()
 
 @property (nonatomic) UITableView *tableView;
@@ -93,6 +96,9 @@
     _filterDataSource = [[NSMutableArray alloc] init];
     // }
     //return self;
+
+    
+    _animationDuration = 0.0;
 }
 
 - (SearchTextFieldTheme *)theme{
@@ -349,7 +355,14 @@
             
             /*self.tableView.frame.origin = tableViewFrame.origin;*/
             /*! NO ANIMATION !!!!*/
-            [self.tableView setFrame:tableViewFrame];
+            //self.tableView.frame.origin.x=tableViewFrame.origin.x;
+            //self.tableView.frame.origin.y=tableViewFrame.origin.y;
+            //[self.tableView setFrame:tableViewFrame];
+            __weak SearchTextField* weakSelf = self;
+            
+            [UIView animateWithDuration:animDurr animations:^(){
+                 [weakSelf.tableView setFrame:tableViewFrame];
+            }];
             
             CGRect shadowFrame = CGRectMake(0, 0, frame.size.width - 6, 1);
             shadowFrame.origin = [self convertPoint:shadowFrame.origin toView:nil];
@@ -359,7 +372,7 @@
         } else {
             const CGFloat tableHeight = MIN((tableView.contentSize.height), (UIScreen.mainScreen.bounds.size.height - frame.origin.y - self.theme.cellHeigh));
             __weak SearchTextField* weakSelf = self;
-            [UIView animateWithDuration:0.2 animations:^(){
+            [UIView animateWithDuration:animDurr animations:^(){
                 weakSelf.tableView.frame = CGRectMake(frame.origin.x + 2, (frame.origin.y - tableHeight), frame.size.width-4, tableHeight);
                 weakSelf.shadowView.frame = CGRectMake(frame.origin.x + 3, frame.origin.y + 3, frame.size.width - 6, 1);
             }];
@@ -530,15 +543,22 @@
     
 }
 
+
 -(void)keyboardWillShow:(NSNotification *) notification{
     
-    if (!self.keyboardIsShowind && self.isEditing){
-        
-        self.keyboardIsShowind = true;
-        self.keyboardFrameCGRect = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
-        self.interactedWidth = true;
-        [self prepareDrawTableResult];
-    }
+    //if (!self.keyboardIsShowind && self.isEditing){
+        // Get the duration of the animation.
+        /*NSValue* animationDurationValue = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+        NSTimeInterval animationDuration;
+        [animationDurationValue getValue:&animationDuration];
+        NSLog(@"animation duration %f",animationDuration);*/
+        [NSTimer scheduledTimerWithTimeInterval:self.animationDuration repeats:false block:^(NSTimer * _Nonnull timer) {
+            self.keyboardIsShowind = true;
+            self.keyboardFrameCGRect = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
+            self.interactedWidth = true;
+            [self prepareDrawTableResult];
+        }];
+   // }
     
 }
 
@@ -575,6 +595,8 @@
     [self filterItems:items];
 }
 
+
+
 -(void)textFieldDidBeginEditing{
     if(self.startVisible || self.startVisibleWithoutInteraction){
         
@@ -583,6 +605,10 @@
         
     }
     self.placeholderLabel.attributedText = nil;
+    
+    //Warning unstable code
+    //code for show suggestion when switch from one textView to another
+    
 }
 
 -(void)textFieldDidEndEditing{

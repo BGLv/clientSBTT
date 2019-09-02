@@ -106,6 +106,8 @@ typedef void(^SearchTextFieldItemHandler)(NSMutableArray * filteredResults, NSIn
 @property (nonatomic) CGFloat tableCornerRadius;
 @property (nonatomic) CGFloat tableBottomMargin;
 
+//custom duration for calculation tableViewFrame
+@property (nonatomic) NSTimeInterval animationDuration;
 @end
 
 NS_ASSUME_NONNULL_END

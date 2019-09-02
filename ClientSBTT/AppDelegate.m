@@ -47,9 +47,18 @@
     //inject dependency to ViewController
     if([viewController isKindOfClass:[UITabBarController class]]){
         firstControllerInsideTabBar = [[(UITabBarController*)viewController childViewControllers] firstObject];
-        if([firstControllerInsideTabBar respondsToSelector:@selector(setConnMC:)])
+        if([firstControllerInsideTabBar respondsToSelector:@selector(setConnMC:)]){
             if([[self.window.rootViewController.childViewControllers firstObject] respondsToSelector:@selector(setConnMC:)])
                 firstControllerInsideTabBar.connMC = [(id <connProtoMC>)[self.window.rootViewController.childViewControllers firstObject] connMC];
+        }else if ([firstControllerInsideTabBar childViewControllers]){
+            for (UIViewController <connProtoMC> *nextChildContr in [firstControllerInsideTabBar childViewControllers]) {
+                if([nextChildContr respondsToSelector:@selector(setConnMC:)]){
+                    if([[self.window.rootViewController.childViewControllers firstObject] respondsToSelector:@selector(setConnMC:)])
+                        nextChildContr.connMC = [(id <connProtoMC>)[self.window.rootViewController.childViewControllers firstObject] connMC];
+                    break;
+                }
+            }
+        }
     }
   
     UIViewController *presentedViewController = self.window.rootViewController.presentedViewController;
