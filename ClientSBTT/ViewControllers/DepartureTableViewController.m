@@ -11,9 +11,11 @@
 #import "../SearchTextField.h"
 #import "../SearchTextFieldTheme.h"
 @interface DepartureTableViewController ()
+
 @property (weak, nonatomic) IBOutlet SearchTextField *fromSearchTextField;
 @property (weak, nonatomic) IBOutlet SearchTextField *toSearchTextField;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *dataPicker;
 
 @property (nonatomic) NSMutableDictionary *filterElementsArr;
 @property (nonatomic) NSMutableArray *messageToSendQueue;
@@ -34,6 +36,14 @@
     self.filterElementsArr = [[NSMutableDictionary alloc] init];
     self.messageToSendQueue = [[NSMutableArray alloc] init];
     
+    //send message to server to get destinations suggestions
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverAnswearParse:) name:@"answerReceivedSBTT" object:nil];
+    [self.connMC sendMessage:[self createMessageToGetCurrentUserName]];
+    __weak DepartureTableViewController *weakSelf=self;
+    [self.messageToSendQueue addObject:^(){
+        [weakSelf.connMC sendMessage:[weakSelf createMessageToGetDestinations]];
+    }];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -43,13 +53,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    /*[[NSNotificationCenter defaultCenter] removeObserver:self name:@"answerReceivedSBTT" object:nil];*/
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverAnswearParse:) name:@"answerReceivedSBTT" object:nil];
-    [self.connMC sendMessage:[self createMessageToGetCurrentUserName]];
-    __weak DepartureTableViewController *weakSelf=self;
-    [self.messageToSendQueue addObject:^(){
-        [weakSelf.connMC sendMessage:[weakSelf createMessageToGetDestinations]];
-    }];
-    
 }
 
 - (IBAction)swapButtonPressed:(id)sender {
@@ -117,6 +122,34 @@
     
     //Nottify for suceed login
     
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.destinationViewController respondsToSelector:@selector(setConnMC:)]){
+        [segue.destinationViewController setConnMC: self.connMC];
+    }
+    SEL infoToSearchTrainSel = NSSelectorFromString(@"setInfoToSearchTrain:");
+    NSMutableDictionary *infoToSearchTrain = [[NSMutableDictionary alloc] init];
+    
+    if([segue.destinationViewController respondsToSelector:infoToSearchTrainSel]){
+        //[segue.destinationViewController setDepartureDate: self.connMC];
+        /*[segue.destinationViewController performSelector:setDepartureDate withObject:nil];*/
+        SEL selector = NSSelectorFromString(@"setInfoToSearchTrain:");
+        IMP imp = [segue.destinationViewController methodForSelector:selector];
+        void (*func)(id, SEL, NSDictionary *) = (void *)imp;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *stringFromDate = [formatter stringFromDate:[self.dataPicker date]];
+        [infoToSearchTrain setObject:stringFromDate forKey:@"departureDate"];
+        NSString * keyFrom = [[self.filterElementsArr allKeysForObject: self.fromSearchTextField.text] firstObject];
+        NSString * keyTo = [[self.filterElementsArr allKeysForObject: self.toSearchTextField.text] firstObject];
+        [infoToSearchTrain setObject:keyFrom  forKey:@"from"];
+        [infoToSearchTrain setObject:keyTo forKey:@"to"];
+        func(segue.destinationViewController, selector, [infoToSearchTrain copy]);
+    }
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"answerReceivedSBTT" object:nil];
 }
 
 

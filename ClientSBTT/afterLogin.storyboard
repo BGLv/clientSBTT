@@ -121,6 +121,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="CNg-Rv-0Tr"/>
                     <connections>
+                        <outlet property="dataPicker" destination="hKr-H7-uO3" id="leU-15-tO6"/>
                         <outlet property="fromSearchTextField" destination="erv-4J-DFn" id="9nT-ci-LR3"/>
                         <outlet property="toSearchTextField" destination="0G0-Di-LKA" id="Qd8-rH-4kS"/>
                     </connections>
@@ -133,29 +134,29 @@
         <scene sceneID="L3h-gk-xqI">
             <objects>
                 <tableViewController id="ni6-yZ-LrB" customClass="TrainSelectionTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ywv-29-A0O">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ywv-29-A0O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="travelDurationCell" rowHeight="47" id="Mp2-EA-tmK" customClass="travelDurationTableViewCell">
-                                <rect key="frame" x="0.0" y="28" width="320" height="47"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="travelDurationCell" rowHeight="51" id="Mp2-EA-tmK" customClass="travelDurationTableViewCell">
+                                <rect key="frame" x="0.0" y="55.5" width="320" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mp2-EA-tmK" id="Qw3-PR-h1o">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="46.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qsq-My-ySs">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TrainName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE1-wf-w5x">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="22.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="4 hours 37 minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1d-Ph-Vqw">
-                                                    <rect key="frame" x="0.0" y="30.5" width="320" height="16"/>
+                                                    <rect key="frame" x="0.0" y="32.5" width="320" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -178,7 +179,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainInfoCell" rowHeight="123" id="AYx-qw-fWj" customClass="trainInfoTableViewCell">
-                                <rect key="frame" x="0.0" y="75" width="320" height="123"/>
+                                <rect key="frame" x="0.0" y="106.5" width="320" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AYx-qw-fWj" id="nc1-on-9u5">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="122.5"/>
@@ -230,17 +231,17 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="yA1-Xu-VVl">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="yA1-Xu-VVl">
                                                     <rect key="frame" x="0.0" y="83" width="288" height="18"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AVALIABLE SEATS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-76-CFU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="261.5" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVALIABLE SEATS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-76-CFU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="79" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hl-TL-zMn">
-                                                            <rect key="frame" x="270.5" y="0.0" width="17.5" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="79" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hl-TL-zMn">
+                                                            <rect key="frame" x="148.5" y="0.0" width="139.5" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -264,7 +265,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="toOrderTicketCell" rowHeight="70" id="ZRK-Eg-yEX" customClass="toOrderTicketTableViewCell">
-                                <rect key="frame" x="0.0" y="198" width="320" height="70"/>
+                                <rect key="frame" x="0.0" y="229.5" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZRK-Eg-yEX" id="JKk-0I-rlh">
                                     <rect key="frame" x="0.0" y="0.0" width="286" height="69.5"/>
