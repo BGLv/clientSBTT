@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TrainSelectionTableViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface travelDurationTableViewCell : UITableViewCell
-
+@interface travelDurationTableViewCell : UITableViewCell<TrainSelection>
+@property (nonatomic) NSDictionary *cellInfo;
 @end
 
 NS_ASSUME_NONNULL_END

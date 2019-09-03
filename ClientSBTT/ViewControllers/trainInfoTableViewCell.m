@@ -7,6 +7,8 @@
 //
 
 #import "trainInfoTableViewCell.h"
+
+static const NSInteger sitsInCar = 31;
 @interface trainInfoTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *fromToDestinationsLabel;
@@ -18,6 +20,19 @@
 
 
 @implementation trainInfoTableViewCell
+
+- (void)setCellInfo:(NSDictionary *)cellInfo{
+    _cellInfo = cellInfo;
+    [self updateUI];
+}
+
+-(void)updateUI{
+    
+    self.fromToDestinationsLabel.text = [NSString stringWithFormat: @"From: %@ - To: %@", self.cellInfo[@"departure"],self.cellInfo[@"destination"]];
+    self.departureTimeLabel.text = self.cellInfo[@"departureDateTime"];
+    self.arrivalTimeLabel.text = self.cellInfo[@"destinationDateTime"];
+    self.avaliableSeatsLabel.text =  [@([(NSString *)self.cellInfo[@"numCars"] integerValue]*sitsInCar) stringValue];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
